@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_12sdp"
-                android:text='@{weather.currentWeatherAverage + "\u00B0C"}'
+                android:text='@{weather.currentWeatherAverage!=null ? weather.currentWeatherAverage + "\u00B0C" : ""}'
                 android:textColor="@color/grey_200"
                 android:textSize="@dimen/_24ssp"
                 app:layout_constraintEnd_toEndOf="parent"
