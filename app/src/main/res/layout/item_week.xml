@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable name="week" type="com.kaizen.weatherapp.domain.home.model.Weather.WeekWeather" />
+
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:padding="@dimen/_8sdp"
+    android:gravity="center"
+    android:weightSum="3"
+    android:background="@drawable/tab_background">
+
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{week.date}"
+        android:textSize="@dimen/_11ssp"
+        android:layout_weight="1"
+        tools:text="@tools:sample/lorem"
+        android:textColor="@color/grey_200"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:maxLines="1"
+        android:text='@{week.weatherAverage + "\u00B0C"}'
+        android:textSize="@dimen/_12ssp"
+        android:layout_weight="1"
+        android:textColor="@color/grey_200"
+        tools:text="@tools:sample/lorem"
+        android:gravity="center"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageWeatherIcon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        app:image_url="@{week.weatherIcon}"
+        android:layout_marginTop="8dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="8dp"
+        tools:src="@tools:sample/avatars"
+        />
+</LinearLayout>
+
+</layout>

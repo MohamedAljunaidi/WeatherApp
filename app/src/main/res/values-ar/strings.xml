@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">الرئيسية</string>
+    <string name="title_search">البحث</string>
+    <string name="title_favourite">المفضلة</string>
+    <string name="title_settings">الاعدادت</string>
+    <string name="add_to_favourite">أضافة إلى المفضلة</string>
+    <string name="today">اليوم</string>
+    <string name="this_week">هذا الاسبوع</string>
+    <string name="cloudy">غائم</string>
+    <string name="humidity">رطوبة</string>
+    <string name="visibility">الرؤية</string>
+    <string name="hourly_forecast">توقعات كل ساعة</string>
+    <string name="added_to_favourite">تمت إضافة الموقع إلى المفضلة</string>
+    <string name="city_not_found">الموقع غير موجود</string>
+    <string name="setting_change_language">تغيير اللغة</string>
+
+</resources>
+

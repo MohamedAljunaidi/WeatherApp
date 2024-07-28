@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <import type="android.view.View" />
+
+
+        <variable name="weather" type="com.kaizen.weatherapp.domain.search.model.SearchWeather" />
+
+        <variable
+            name="clickListener"
+            type="Function1&lt;View, Unit>" />
+
+
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:layout_marginEnd="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_8sdp"
+    android:layout_marginBottom="@dimen/_8sdp"
+    android:padding="@dimen/_8sdp"
+    android:gravity="center"
+    android:weightSum="4"
+    android:background="@drawable/tab_background">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageAddToFavourite"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favourite"
+        android:onClick="@{(view) -> clickListener.invoke(view)}"
+        android:tint="@color/grey_200"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_weight=".5"
+        android:layout_marginBottom="@dimen/_8sdp" />
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@{weather.city}"
+        android:textSize="@dimen/_11ssp"
+        android:layout_weight="1.5"
+        tools:text="@tools:sample/lorem"
+        android:textColor="@color/grey_200"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/textTemperature"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lines="2"
+        android:maxLines="1"
+        android:text='@{weather.currentWeatherAverage + "\u00B0C"}'
+        android:textSize="@dimen/_12ssp"
+        android:layout_weight="1"
+        android:textColor="@color/grey_200"
+        tools:text="@tools:sample/lorem"
+        android:gravity="center"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageWeatherIcon"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_40sdp"
+        app:image_url="@{weather.currentWeatherIcon}"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/_8sdp"
+        tools:src="@tools:sample/avatars"
+        />
+</LinearLayout>
+
+</layout>

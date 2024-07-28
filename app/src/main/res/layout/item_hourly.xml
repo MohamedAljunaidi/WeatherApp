@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable name="hourly" type="com.kaizen.weatherapp.domain.home.model.Weather.Hourly" />
+
+    </data>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginStart="@dimen/_8sdp"
+    android:padding="@dimen/_8sdp"
+    android:background="@drawable/weather_item_background"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/textTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text='@{hourly.weatherAverage + "\u00B0C"}'
+        android:textSize="@dimen/_12ssp"
+        android:textColor="@color/grey_500"
+        android:gravity="center"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imageWeatherIcon"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:image_url="@{hourly.weatherIcon}"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/textTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{hourly.time}"
+        android:textSize="@dimen/_11ssp"
+        android:textColor="@color/white"
+        android:gravity="center"/>
+
+</LinearLayout>
+
+</layout>

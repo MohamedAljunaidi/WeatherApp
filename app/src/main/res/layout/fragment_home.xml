@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="weather"
+            type="com.kaizen.weatherapp.domain.home.model.Weather" />
+
+        <variable
+            name="hourlyAdapter"
+            type="com.kaizen.weatherapp.presentation.home.HourlyAdapter" />
+
+        <variable
+            name="weekAdapter"
+            type="com.kaizen.weatherapp.presentation.home.WeekAdapter" />
+      <variable
+            name="showToday"
+            type="Boolean" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.home.HomeFragment">
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_60sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_60sdp"
+                android:background="@drawable/tab_background"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tabBackground="@drawable/tab_selector"
+                app:tabGravity="fill"
+                app:tabIndicatorHeight="0dp"
+                app:tabMaxWidth="0dp"
+                app:tabMode="fixed"
+                app:tabSelectedTextColor="@color/white"
+                app:tabTextColor="@color/grey_500">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabToday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/today"
+                    android:textAlignment="center" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabThisWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:text="@string/this_week"
+                    android:textAlignment="center" />
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textCity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@{weather.city}"
+                android:textColor="@color/grey_300"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@{weather.currentDateTime}"
+                android:textColor="@color/grey_500"
+                android:textSize="@dimen/_10ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textCity" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageWeatherIcon"
+                android:layout_width="@dimen/_80sdp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                tools:src="@drawable/ic_launcher_background"
+                app:image_url="@{weather.currentWeatherIcon}"
+                app:layout_constraintEnd_toEndOf="@+id/tabLayout"
+                app:layout_constraintStart_toStartOf="@+id/tabLayout"
+                app:layout_constraintTop_toBottomOf="@+id/textDate" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textWeatherDegree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text='@{weather.currentWeatherAverage + "\u00B0C"}'
+                android:textColor="@color/grey_200"
+                android:textSize="@dimen/_24ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageWeatherIcon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textWeatherState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@drawable/tab_background"
+                android:paddingStart="@dimen/_25sdp"
+                android:paddingTop="@dimen/_8sdp"
+                android:paddingEnd="@dimen/_25sdp"
+                android:paddingBottom="@dimen/_8sdp"
+                android:text="@{weather.currentWeatherDesc}"
+                android:textColor="@color/grey_200"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textWeatherDegree" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintWeatherInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+
+                app:layout_constraintEnd_toEndOf="@+id/textWeatherState"
+                app:layout_constraintStart_toStartOf="@+id/textWeatherState"
+                app:layout_constraintTop_toBottomOf="@+id/textWeatherState">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textWind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_18sdp"
+                    android:text="@string/cloudy"
+                    android:textColor="@color/grey_200"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textWindValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text='@{weather.currentWeatherCloudy + " km/h"}'
+                    android:textColor="@color/grey_500"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/textWind"
+                    app:layout_constraintStart_toStartOf="@+id/textWind"
+                    app:layout_constraintTop_toBottomOf="@+id/textWind" />
+
+
+                <View
+                    android:id="@+id/viewSeparator"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_26sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/grey_500"
+                    app:layout_constraintBottom_toBottomOf="@+id/textWindValue"
+                    app:layout_constraintStart_toEndOf="@+id/textWindValue"
+                    app:layout_constraintTop_toTopOf="@+id/textWind" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_26sdp"
+                    android:text="@string/humidity"
+                    android:textColor="@color/grey_200"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toEndOf="@+id/viewSeparator"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textHumidityValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text='@{weather.currentWeatherHumidity + "%"}'
+                    android:textColor="@color/grey_500"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/textHumidity"
+                    app:layout_constraintStart_toStartOf="@+id/textHumidity"
+                    app:layout_constraintTop_toBottomOf="@+id/textHumidity" />
+
+                <View
+                    android:id="@+id/viewSeparator2"
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_26sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@color/grey_500"
+                    app:layout_constraintBottom_toBottomOf="@+id/textWindValue"
+                    app:layout_constraintStart_toEndOf="@+id/textHumidity"
+                    app:layout_constraintTop_toTopOf="@+id/textWind" />
+
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_26sdp"
+                    android:layout_marginEnd="@dimen/_18sdp"
+
+                    android:text="@string/visibility"
+                    android:textColor="@color/grey_200"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/viewSeparator2"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textLowValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:text='@{weather.currentWeatherVisibility + "%"}'
+                    android:textColor="@color/grey_500"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/textLow"
+                    app:layout_constraintStart_toStartOf="@+id/textLow"
+                    app:layout_constraintTop_toBottomOf="@+id/textLow" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/viewSeparator3"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:background="@color/grey_500"
+                app:layout_constraintEnd_toEndOf="@+id/constraintWeatherInfo"
+                app:layout_constraintStart_toStartOf="@+id/constraintWeatherInfo"
+                app:layout_constraintTop_toBottomOf="@+id/constraintWeatherInfo" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/textHourlyWeather"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:text="@string/hourly_forecast"
+                android:textColor="@color/grey_200"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="@+id/viewSeparator3"
+                app:layout_constraintTop_toBottomOf="@+id/viewSeparator3" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerHourlyWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:adapter="@{hourlyAdapter}"
+                android:orientation="horizontal"
+                app:entry_list="@{weather.hourly}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/constraintWeatherInfo"
+                app:layout_constraintStart_toStartOf="@+id/constraintWeatherInfo"
+                app:layout_constraintTop_toBottomOf="@+id/textHourlyWeather"
+                tools:listitem="@layout/item_hourly" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerWeekWeather"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_16sdp"
+                android:adapter="@{weekAdapter}"
+                android:orientation="vertical"
+                android:nestedScrollingEnabled="false"
+                app:entry_list="@{weather.weekWeather}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/constraintWeatherInfo"
+                app:layout_constraintStart_toStartOf="@+id/constraintWeatherInfo"
+                app:layout_constraintTop_toBottomOf="@+id/textHourlyWeather"
+                tools:listitem="@layout/item_week" />
+
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/GroupToday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{showToday ?  View.VISIBLE  : View.GONE}"
+                app:constraint_referenced_ids="imageWeatherIcon, textDate, textCity, textWeatherDegree, textWeatherState, constraintWeatherInfo, viewSeparator3, textHourlyWeather, recyclerHourlyWeather" />
+
+            <androidx.constraintlayout.widget.Group
+                android:id="@+id/GroupWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="@{showToday ?  View.GONE : View.VISIBLE, default = gone}"
+                app:constraint_referenced_ids="recyclerWeekWeather" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+</layout>

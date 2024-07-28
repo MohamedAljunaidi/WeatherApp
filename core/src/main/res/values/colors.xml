@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="grey_500">#4A525B</color>
+    <color name="grey_200">#f0f0f0</color>
+    <color name="grey_300">#CCC</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primaryColor">#1B2530</color>
+
+    <color name="tab_background">#5DA0F7</color>
+    <color name="tab_unselected_color">#272F38</color>
+</resources>

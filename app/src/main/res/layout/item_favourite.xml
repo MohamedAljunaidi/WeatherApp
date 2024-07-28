@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="weather"
+            type="com.kaizen.weatherapp.domain.search.model.SearchWeather" />
+
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginEnd="@dimen/_8sdp"
+        android:layout_marginBottom="@dimen/_8sdp"
+        android:background="@drawable/tab_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="@dimen/_8sdp"
+        android:weightSum="3">
+
+
+        <TextView
+            android:id="@+id/textTime"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@{weather.city}"
+            android:textColor="@color/grey_200"
+            android:textSize="@dimen/_11ssp"
+            tools:text="@tools:sample/lorem" />
+
+        <TextView
+            android:id="@+id/textTemperature"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="2"
+            android:maxLines="1"
+            android:text='@{weather.currentWeatherAverage + "\u00B0C"}'
+            android:textColor="@color/grey_200"
+            android:textSize="@dimen/_12ssp"
+            tools:text="asljkdhaskjdhakjshdjkhas" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageWeatherIcon"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_weight="1"
+            app:image_url="@{weather.currentWeatherIcon}"
+            tools:src="@tools:sample/avatars" />
+    </LinearLayout>
+
+</layout>
